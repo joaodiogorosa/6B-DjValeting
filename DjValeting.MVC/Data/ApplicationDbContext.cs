@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DjValeting.MVC.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DjValeting.MVC.Data
@@ -9,5 +10,7 @@ namespace DjValeting.MVC.Data
             : base(options)
         {
         }
+        public DbSet<ClientModel> clientModels { get; set; }
+
     }
 }
