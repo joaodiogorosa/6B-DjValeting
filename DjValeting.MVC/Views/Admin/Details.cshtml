@@ -1,0 +1,93 @@
+﻿@model DjValeting.MVC.Models.ClientModel
+
+@{
+    ViewData["Title"] = "Details";
+
+        string flexibility = "";
+    switch (Model.Flexibility)
+    {
+        case 1:
+            flexibility = "+/- 1 Day";
+            break;
+        case 2:
+            flexibility = "+/- 2 Days";
+            break;
+        case 3:
+            flexibility = "+/- 3 Days";
+            break;
+
+        default:
+            flexibility = "-";
+            break;
+    }
+
+    string vehicleSize = "";
+    switch (Model.VehicleSize)
+    {
+        case 1:
+            vehicleSize = "Small";
+            break;
+        case 2:
+            vehicleSize = "Medium";
+            break;
+        case 3:
+            vehicleSize = "Large";
+            break;
+        case 4:
+            vehicleSize = "Van";
+            break;
+
+        default:
+            vehicleSize = "-";
+            break;
+    }
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ClientModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Booking Date
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BookingDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Flexibility
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(flexibility)
+        </dd>
+        <dt class = "col-sm-2">
+            Vehicle Size
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(vehicleSize)
+        </dd>
+        <dt class = "col-sm-2">
+            Contact Number
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            Email
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

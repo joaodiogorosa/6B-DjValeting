@@ -26,6 +26,11 @@ namespace DjValeting.MVC.Controllers
             return View();
         }
 
+        public IActionResult Error()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Add()
         {
@@ -52,8 +57,17 @@ namespace DjValeting.MVC.Controllers
                 VehicleSize = vehicleSize
             };
 
-            var xpto1 = _context.clientModels.Add(cModel);
-            var xpto2 = _context.SaveChanges();
+            try
+            {
+                _context.clientModels.Add(cModel);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Error));
+            }
+
+            
 
             return RedirectToAction(nameof(Success));
         }
@@ -64,11 +78,11 @@ namespace DjValeting.MVC.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
 
         
     }

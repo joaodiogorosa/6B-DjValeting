@@ -2,9 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+<div class="row">
+    <div class="col text-center">
+        <p class="h2">
+
+        </p>
+    </div>
+</div>
+
 <form action="Home/Add" method="post" class="needs-validation">
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12 my-1">
             <label for="tbxName" class="form-label">Name</label>
             <input id="tbxName" name="tbxName" class="form-control" type="text" required>
             <div class="invalid-feedback">
@@ -14,12 +23,12 @@
         </div>
 
 
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12 my-1">
             <label for="tbxDate" class="form-label">Date</label>
             <input id="tbxDate" name="tbxDate" class="form-control" type="date">
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12 my-1">
             <label for="selFlexibility" class="form-label">Flexibility</label>
             <select id="selFlexibility" name="selFlexibility" class="form-select">
                 <option value="0" selected disabled>-</option>
@@ -29,7 +38,7 @@
             </select>
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12 my-1">
             <label for="selVehicleSize" class="form-label">Vehicle Size</label>
             <select id="selVehicleSize" name="selVehicleSize" class="form-select">
                 <option value="0" selected disabled>-</option>
@@ -40,18 +49,18 @@
             </select>
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12 my-1">
             <label for="tbxNumber" class="form-label">Contact Number</label>
             <input id="tbxNumber" name="tbxNumber" class="form-control" type="tel">
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12 my-1">
             <label for="tbxEmail" class="form-label">Email address</label>
             <input id="tbxEmail" name="tbxEmail" class="form-control" type="email">
         </div>
 
-        <div class="col-12">
-            <button id="btnSubmit" class="btn btn-primary" type="submit">Submit</button>
+        <div class="col-12 my-1">
+            <button id="btnSubmit" class="btn btn-primary float-end" type="submit">Submit</button>
         </div>
 
     </div>

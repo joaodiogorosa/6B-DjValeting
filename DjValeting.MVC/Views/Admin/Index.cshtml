@@ -1,0 +1,145 @@
+﻿@model IEnumerable<DjValeting.MVC.Models.ClientModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Booking List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="text-center">
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                Name
+            </th>
+            <th scope="col">
+                Email
+            </th>
+            <th scope="col">
+                Contact Number
+            </th>
+            <th scope="col">
+                Booking Date
+            </th>
+            <th scope="col">
+                Flexibility
+            </th>
+            <th scope="col">
+                Vehicle Size
+            </th>
+            <th scope="col">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            string htmlcode = "";
+            if (item.Approved == true)
+            {
+                htmlcode = @"class=""table-success""";
+            }
+            
+            if(item.Approved == false)
+            {
+                htmlcode = @"class=""table-light""";
+            }
+
+            string flexibility = "";
+            switch (item.Flexibility)
+            {
+                case 1:
+                    flexibility = "+/- 1 Day";
+                    break;
+                case 2:
+                    flexibility = "+/- 2 Days";
+                    break;
+                case 3:
+                    flexibility = "+/- 3 Days";
+                    break;
+
+                default:
+                    flexibility = "-";
+                    break;
+            }
+
+            string vehicleSize = "";
+            switch (item.VehicleSize)
+            {
+                case 1:
+                    vehicleSize = "Small";
+                    break;
+                case 2:
+                    vehicleSize = "Medium";
+                    break;
+                case 3:
+                    vehicleSize = "Large";
+                    break;
+                case 4:
+                    vehicleSize = "Van";
+                    break;
+
+                default:
+                    vehicleSize = "-";
+                    break;
+            }
+
+
+            <tr @Html.Raw(htmlcode)>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </a>
+                </td>
+                <td>
+                    <a href="tel:@Html.DisplayFor(modelItem => item.ContactNumber)">
+                        @Html.DisplayFor(modelItem => item.ContactNumber)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDate)
+                </td>
+                <td>
+                    @Html.Raw(flexibility)
+                </td>
+                <td>
+                    @Html.Raw(vehicleSize)
+                </td>
+                <td class="text-end">
+
+                    <div class="btn-group mx-1" role="group">
+                        @if(item.Approved != true)
+                        {
+                            <a asp-action="Approve" asp-route-id="@item.Id" class="btn btn-success">Approve</a>
+                        }
+
+                        @if(item.Approved != false)
+                        {
+                            <a asp-action="Reject" asp-route-id="@item.Id" class="btn btn-danger">Reject</a>
+                        }
+                    </div>
+
+                    <div class="btn-group mx-1" role="group">
+                        <a asp-action="Edit"  asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
